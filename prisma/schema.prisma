@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  AUTHOR
+  VISITOR
+}
+
+enum BlogStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  PUBLISHED
+}
+
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  passwordHash  String
+  role          Role     @default(AUTHOR)
+  bio           String?
+  avatarUrl     String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  blogs         Blog[]
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  colorTag  String?  // maps to a design token, e.g. "blue" | "coral" | "teal"
+  createdAt DateTime @default(now())
+
+  blogs     Blog[]
+}
+
+model Blog {
+  id              String     @id @default(cuid())
+  title           String
+  slug            String     @unique
+  description     String
+  content         String     @db.Text
+  featuredImage   String?
+  status          BlogStatus @default(PENDING_REVIEW)
+  readingTimeMins Int        @default(5)
+  isFeatured      Boolean    @default(false)
+  references      String?    @db.Text
+  rejectionNote   String?
+
+  authorId    String
+  author      User      @relation(fields: [authorId], references: [id])
+
+  categoryId  String
+  category    Category  @relation(fields: [categoryId], references: [id])
+
+  tags        Tag[]
+  media       Media[]
+  comments    Comment[]
+
+  submittedAt DateTime  @default(now())
+  reviewedAt  DateTime?
+  publishedAt DateTime?
+  updatedAt   DateTime  @updatedAt
+}
+
+model Tag {
+  id    String @id @default(cuid())
+  name  String @unique
+  blogs Blog[]
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String
+  altText   String?
+  blogId    String
+  blog      Blog     @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  authorName String
+  blogId    String
+  blog      Blog     @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
