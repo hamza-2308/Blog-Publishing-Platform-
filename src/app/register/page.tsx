@@ -8,7 +8,7 @@ export default async function RegisterPage() {
   if (session) redirect("/");
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center py-16 relative">
+    <div className="min-h-[80vh] flex items-center justify-center py-12 sm:py-16 relative px-4">
       {/* Decorative background */}
       <div className="decorative-blob w-64 h-64 bg-accent-400 -top-10 -right-10" />
       <div className="decorative-blob w-80 h-80 bg-accent-100 bottom-0 -left-20" />
@@ -16,15 +16,15 @@ export default async function RegisterPage() {
       <div className="w-full max-w-md relative">
         {/* Brand */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-700 text-white text-2xl font-bold mb-4 shadow-lg shadow-accent-600/20 animate-float">
+          <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-700 text-white text-xl sm:text-2xl font-bold mb-4 shadow-lg shadow-accent-600/20 animate-float">
             Q
           </div>
-          <h1 className="font-voice text-3xl font-semibold mb-2">Start writing</h1>
-          <p className="text-ink-400">Create your author account</p>
+          <h1 className="font-voice text-2xl sm:text-3xl font-semibold mb-2">Start writing</h1>
+          <p className="text-ink-400 text-sm sm:text-base">Create your author account</p>
         </div>
 
         {/* Card */}
-        <div className="bg-white border border-ink-100 rounded-2xl p-8 shadow-card">
+        <div className="bg-white border border-ink-100 rounded-2xl p-5 sm:p-8 shadow-card">
           <RegisterForm />
         </div>
 

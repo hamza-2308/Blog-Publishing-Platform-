@@ -28,42 +28,42 @@ export default async function AdminDashboard() {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="font-voice text-2xl font-semibold mb-1">Dashboard</h1>
+      <div className="mb-6 sm:mb-8">
+        <h1 className="font-voice text-xl sm:text-2xl font-semibold mb-1">Dashboard</h1>
         <p className="text-sm text-ink-400">Overview of your publishing desk</p>
       </div>
 
       {/* Stats grid */}
-      <div className="grid grid-cols-3 gap-4 mb-10">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-10">
         {stats.map((s) => (
-          <div key={s.label} className={`${s.bg} rounded-xl p-5 shadow-soft hover:shadow-card transition-shadow`}>
+          <div key={s.label} className={`${s.bg} rounded-xl p-4 sm:p-5 shadow-soft hover:shadow-card transition-shadow`}>
             <div className="flex items-center justify-between mb-2">
-              <p className="text-xs text-ink-400">{s.label}</p>
+              <p className="text-[10px] sm:text-xs text-ink-400">{s.label}</p>
               <span className="text-sm">{s.icon}</span>
             </div>
-            <p className={`text-3xl font-semibold ${s.color}`}>{s.value}</p>
+            <p className={`text-2xl sm:text-3xl font-semibold ${s.color}`}>{s.value}</p>
           </div>
         ))}
       </div>
 
       {/* Recent submissions */}
       <div className="bg-white border border-ink-100 rounded-xl overflow-hidden shadow-soft">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-ink-100">
+        <div className="flex items-center justify-between px-4 sm:px-5 py-4 border-b border-ink-100">
           <h2 className="font-medium">Recent submissions</h2>
-          <Link href="/admin/blogs" className="text-sm text-accent-600 font-medium hover:text-accent-800 inline-flex items-center gap-1 group">
+          <Link href="/admin/blogs" className="text-sm text-accent-600 font-medium hover:text-accent-800 inline-flex items-center gap-1 group whitespace-nowrap">
             Manage all
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </Link>
         </div>
         <div className="divide-y divide-ink-50">
           {recent.map((b) => (
-            <div key={b.id} className="flex items-center justify-between px-5 py-3.5 text-sm table-row-hover">
-              <div>
-                <p className="font-medium">{b.title}</p>
-                <p className="text-xs text-ink-400 mt-0.5">{b.author.name}</p>
+            <div key={b.id} className="flex items-center justify-between px-4 sm:px-5 py-3.5 text-sm table-row-hover gap-3">
+              <div className="min-w-0">
+                <p className="font-medium truncate">{b.title}</p>
+                <p className="text-xs text-ink-400 mt-0.5 truncate">{b.author.name}</p>
               </div>
               <span
-                className={`status-badge ${
+                className={`status-badge shrink-0 ${
                   b.status === "PUBLISHED"
                     ? "status-published"
                     : b.status === "PENDING_REVIEW"

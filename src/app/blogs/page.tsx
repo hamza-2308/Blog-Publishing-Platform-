@@ -28,9 +28,9 @@ export default async function BlogsPage({
   const activeCategory = searchParams.category;
 
   return (
-    <div className="py-10">
-      <div className="mb-8">
-        <h1 className="font-voice text-3xl font-semibold mb-2">All blogs</h1>
+    <div className="py-8 sm:py-10 px-4 sm:px-0">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="font-voice text-2xl sm:text-3xl font-semibold mb-2">All blogs</h1>
         <p className="text-ink-400 text-sm">
           {blogs.length} {blogs.length === 1 ? "article" : "articles"} on the shelf
         </p>
@@ -67,7 +67,7 @@ export default async function BlogsPage({
       </div>
 
       {/* Search form */}
-      <form className="mb-8 flex gap-2" action="/blogs">
+      <form className="mb-8 flex flex-col sm:flex-row gap-2" action="/blogs">
         <div className="relative flex-1">
           <svg
             className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-400"
@@ -90,12 +90,12 @@ export default async function BlogsPage({
             className="w-full border border-ink-100 rounded-lg pl-10 pr-3 py-2.5 text-sm bg-white input-focus shadow-soft"
           />
         </div>
-        <button className="bg-ink-900 text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-accent-600 transition-all duration-200 hover:-translate-y-0.5 shadow-md shadow-ink-900/10">
+        <button className="bg-ink-900 text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:bg-accent-600 transition-all duration-200 hover:-translate-y-0.5 shadow-md shadow-ink-900/10 sm:w-auto w-full">
           Search
         </button>
       </form>
 
-      <div className="grid md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {blogs.map((blog) => (
           <BlogCard
             key={blog.id}
@@ -111,7 +111,7 @@ export default async function BlogsPage({
           />
         ))}
         {blogs.length === 0 && (
-          <div className="col-span-3 text-center py-16">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-3 text-center py-16">
             <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-ink-50 flex items-center justify-center">
               <svg className="w-8 h-8 text-ink-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

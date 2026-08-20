@@ -12,9 +12,9 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-ink-100 mt-20 bg-gradient-to-b from-ink-50/50 to-ink-100/30">
-      <div className="max-w-5xl mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-10">
-          <div>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
+          <div className="sm:col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-3">
               <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-ink-900 to-ink-700 text-white flex items-center justify-center font-voice text-sm font-semibold shadow-sm">
                 Q
@@ -99,7 +99,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-ink-100 mt-10 pt-6 flex items-center justify-between text-xs text-ink-400">
+        <div className="border-t border-ink-100 mt-8 sm:mt-10 pt-5 sm:pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-400">
           <span>© 2026 Quire — a place for reviewed writing</span>
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />

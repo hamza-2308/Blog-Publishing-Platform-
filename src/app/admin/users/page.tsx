@@ -18,8 +18,8 @@ export default async function AdminUsersPage() {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="font-voice text-2xl font-semibold mb-1">Users and authors</h1>
+      <div className="mb-6 sm:mb-8">
+        <h1 className="font-voice text-xl sm:text-2xl font-semibold mb-1">Users and authors</h1>
         <p className="text-sm text-ink-400">
           {users.length} {users.length === 1 ? "user" : "users"} on the platform
         </p>
@@ -28,14 +28,14 @@ export default async function AdminUsersPage() {
       <div className="bg-white border border-ink-100 rounded-xl overflow-hidden shadow-soft">
         <div className="divide-y divide-ink-50">
           {users.map((u) => (
-            <div key={u.id} className="px-5 py-4 table-row-hover">
-              <div className="flex items-center justify-between gap-4">
+            <div key={u.id} className="px-4 sm:px-5 py-4 table-row-hover">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
                 <div className="flex items-center gap-3 flex-1 min-w-0">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-400 to-accent-600 text-white flex items-center justify-center font-semibold shrink-0 shadow-sm">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-accent-400 to-accent-600 text-white flex items-center justify-center font-semibold shrink-0 shadow-sm">
                     {u.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <p className="font-medium truncate">{u.name}</p>
                       <span
                         className={`status-badge ${

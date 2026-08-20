@@ -38,45 +38,45 @@ export default async function DashboardPage() {
   const rejected = statusCounts.REJECTED ?? 0;
 
   return (
-    <div className="py-10">
+    <div className="py-8 sm:py-10 px-4 sm:px-0">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <h1 className="font-voice text-3xl font-semibold mb-1">My blogs</h1>
+          <h1 className="font-voice text-2xl sm:text-3xl font-semibold mb-1">My blogs</h1>
           <p className="text-ink-400 text-sm">
             Track your submissions and their review status
           </p>
         </div>
         <Link
           href="/submit"
-          className="bg-gradient-to-r from-ink-900 to-ink-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:from-accent-600 hover:to-accent-700 transition-all duration-300 shadow-md shadow-ink-900/10 hover:shadow-accent-600/20 hover:-translate-y-0.5"
+          className="bg-gradient-to-r from-ink-900 to-ink-700 text-white px-4 sm:px-5 py-2.5 rounded-lg text-sm font-medium hover:from-accent-600 hover:to-accent-700 transition-all duration-300 shadow-md shadow-ink-900/10 hover:shadow-accent-600/20 hover:-translate-y-0.5 whitespace-nowrap"
         >
           + Write a blog
         </Link>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
-        <div className="bg-white border border-ink-100 rounded-xl p-5 shadow-soft hover:shadow-card transition-shadow">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
+        <div className="bg-white border border-ink-100 rounded-xl p-4 sm:p-5 shadow-soft hover:shadow-card transition-shadow">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500" />
             <p className="text-xs text-ink-400">Published</p>
           </div>
-          <p className="text-3xl font-semibold text-emerald-600">{published}</p>
+          <p className="text-2xl sm:text-3xl font-semibold text-emerald-600">{published}</p>
         </div>
-        <div className="bg-white border border-ink-100 rounded-xl p-5 shadow-soft hover:shadow-card transition-shadow">
+        <div className="bg-white border border-ink-100 rounded-xl p-4 sm:p-5 shadow-soft hover:shadow-card transition-shadow">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-2 h-2 rounded-full bg-amber-500" />
             <p className="text-xs text-ink-400">Pending review</p>
           </div>
-          <p className="text-3xl font-semibold text-amber-600">{pending}</p>
+          <p className="text-2xl sm:text-3xl font-semibold text-amber-600">{pending}</p>
         </div>
-        <div className="bg-white border border-ink-100 rounded-xl p-5 shadow-soft hover:shadow-card transition-shadow">
+        <div className="bg-white border border-ink-100 rounded-xl p-4 sm:p-5 shadow-soft hover:shadow-card transition-shadow">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-2 h-2 rounded-full bg-red-500" />
             <p className="text-xs text-ink-400">Rejected</p>
           </div>
-          <p className="text-3xl font-semibold text-red-600">{rejected}</p>
+          <p className="text-2xl sm:text-3xl font-semibold text-red-600">{rejected}</p>
         </div>
       </div>
 
@@ -87,11 +87,11 @@ export default async function DashboardPage() {
           return (
             <div
               key={blog.id}
-              className="bg-white border border-ink-100 rounded-xl p-5 hover:border-accent-400/50 transition-all duration-200 shadow-soft hover:shadow-card"
+              className="bg-white border border-ink-100 rounded-xl p-4 sm:p-5 hover:border-accent-400/50 transition-all duration-200 shadow-soft hover:shadow-card"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-start justify-between gap-3 sm:gap-4">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
                     <span
                       className="text-xs font-medium px-2 py-0.5 rounded-full"
                       style={{ background: colors.bg, color: colors.text }}
@@ -102,7 +102,7 @@ export default async function DashboardPage() {
                       {blog.status.replace("_", " ").toLowerCase()}
                     </span>
                   </div>
-                  <h3 className="font-medium mb-1">{blog.title}</h3>
+                  <h3 className="font-medium mb-1 truncate">{blog.title}</h3>
                   <p className="text-sm text-ink-400 line-clamp-1">{blog.description}</p>
                   <p className="text-xs text-ink-400 mt-2">
                     Submitted {new Date(blog.submittedAt).toLocaleDateString("en-US", {
@@ -121,7 +121,7 @@ export default async function DashboardPage() {
                 {blog.status === "PUBLISHED" && (
                   <Link
                     href={`/blogs/${blog.slug}`}
-                    className="text-sm text-accent-600 font-medium hover:text-accent-800 whitespace-nowrap inline-flex items-center gap-1 group"
+                    className="text-sm text-accent-600 font-medium hover:text-accent-800 whitespace-nowrap inline-flex items-center gap-1 group shrink-0"
                   >
                     View
                     <span className="group-hover:translate-x-1 transition-transform">→</span>

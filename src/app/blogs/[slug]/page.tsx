@@ -44,9 +44,9 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
   const colors = CATEGORY_COLOR_MAP[blog.category.colorTag ?? "blue"];
 
   return (
-    <article className="py-10">
+    <article className="py-8 sm:py-10 px-4 sm:px-0">
       {/* Breadcrumb */}
-      <nav className="text-xs text-ink-400 mb-6">
+      <nav className="text-xs text-ink-400 mb-6 overflow-x-auto whitespace-nowrap">
         <Link href="/" className="hover:text-accent-600 transition-colors">
           Home
         </Link>
@@ -66,17 +66,17 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
         >
           {blog.category.name}
         </span>
-        <h1 className="font-voice text-4xl font-semibold leading-tight mb-4">{blog.title}</h1>
-        <p className="text-ink-400 text-lg mb-6">{blog.description}</p>
+        <h1 className="font-voice text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight mb-4">{blog.title}</h1>
+        <p className="text-ink-400 text-base sm:text-lg mb-6">{blog.description}</p>
         <div className="flex items-center justify-center gap-3 text-sm text-ink-400">
           <div
-            className="w-9 h-9 rounded-full flex items-center justify-center font-semibold text-white shadow-sm"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-semibold text-white shadow-sm shrink-0"
             style={{ background: colors.text }}
           >
             {blog.author.name.charAt(0).toUpperCase()}
           </div>
-          <div className="text-left">
-            <p className="font-medium text-ink-900">{blog.author.name}</p>
+          <div className="text-left min-w-0">
+            <p className="font-medium text-ink-900 truncate">{blog.author.name}</p>
             <p className="text-xs">
               {blog.publishedAt
                 ? new Date(blog.publishedAt).toLocaleDateString("en-US", {
@@ -92,7 +92,7 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
       </header>
 
       {/* Cover image */}
-      <div className="h-72 rounded-2xl mb-10 relative overflow-hidden bg-gradient-to-br from-accent-50 via-ink-50 to-ink-100 shadow-card">
+      <div className="h-48 sm:h-56 md:h-72 rounded-2xl mb-8 sm:mb-10 relative overflow-hidden bg-gradient-to-br from-accent-50 via-ink-50 to-ink-100 shadow-card">
         {blog.featuredImage ? (
           <Image
             src={blog.featuredImage}
@@ -115,21 +115,21 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
         <div className="prose-content whitespace-pre-line">{blog.content}</div>
 
         {blog.references && (
-          <div className="mt-10 bg-ink-50 rounded-xl p-6 border border-ink-100">
+          <div className="mt-10 bg-ink-50 rounded-xl p-5 sm:p-6 border border-ink-100">
             <h3 className="font-voice font-semibold text-lg mb-3">References</h3>
             <p className="text-sm text-ink-400 whitespace-pre-line">{blog.references}</p>
           </div>
         )}
 
         {/* Author card */}
-        <div className="mt-10 border border-ink-100 rounded-xl p-6 bg-white flex items-center gap-4 shadow-soft">
+        <div className="mt-10 border border-ink-100 rounded-xl p-5 sm:p-6 bg-white flex items-center gap-4 shadow-soft">
           <div
-            className="w-12 h-12 rounded-full flex items-center justify-center font-semibold text-white text-lg shadow-sm"
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-semibold text-white text-base sm:text-lg shadow-sm shrink-0"
             style={{ background: colors.text }}
           >
             {blog.author.name.charAt(0).toUpperCase()}
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="font-medium">Written by {blog.author.name}</p>
             <p className="text-sm text-ink-400">
               {blog.author.bio ?? "Contributing writer at Quire."}
@@ -142,15 +142,15 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
       {related.length > 0 && (
         <section className="mt-16 max-w-4xl mx-auto">
           <div className="border-t border-ink-100 pt-8">
-            <h2 className="font-voice text-2xl font-semibold mb-6">Related blogs</h2>
-            <div className="grid md:grid-cols-3 gap-5">
+            <h2 className="font-voice text-xl sm:text-2xl font-semibold mb-6">Related blogs</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
               {related.map((r) => {
                 const rColors = CATEGORY_COLOR_MAP[r.category.colorTag ?? "blue"];
                 return (
                   <Link
                     key={r.id}
                     href={`/blogs/${r.slug}`}
-                    className="card-hover block border border-ink-100 rounded-xl p-5 bg-white hover:border-accent-400/50 group shadow-soft hover:shadow-lift"
+                    className="card-hover block border border-ink-100 rounded-xl p-4 sm:p-5 bg-white hover:border-accent-400/50 group shadow-soft hover:shadow-lift"
                   >
                     <span
                       className="inline-block text-xs font-medium px-2 py-0.5 rounded-full mb-2"

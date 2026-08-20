@@ -8,30 +8,30 @@ export default async function CategoriesPage() {
   });
 
   return (
-    <div className="py-10">
-      <div className="mb-8">
-        <h1 className="font-voice text-3xl font-semibold mb-2">Categories</h1>
+    <div className="py-8 sm:py-10 px-4 sm:px-0">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="font-voice text-2xl sm:text-3xl font-semibold mb-2">Categories</h1>
         <p className="text-ink-400 text-sm">
           Browse the shelves — {categories.length} topics to explore
         </p>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {categories.map((c) => {
           const colors = CATEGORY_COLOR_MAP[c.colorTag ?? "blue"];
           return (
             <Link
               key={c.id}
               href={`/blogs?category=${c.slug}`}
-              className="card-hover block border border-ink-100 rounded-xl p-6 bg-white hover:border-accent-400/50 group shadow-soft hover:shadow-lift"
+              className="card-hover block border border-ink-100 rounded-xl p-5 sm:p-6 bg-white hover:border-accent-400/50 group shadow-soft hover:shadow-lift"
             >
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-semibold mb-4 group-hover:scale-110 transition-transform duration-300"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-lg sm:text-xl font-semibold mb-4 group-hover:scale-110 transition-transform duration-300"
                 style={{ background: colors.bg, color: colors.text }}
               >
                 {c.name.charAt(0)}
               </div>
-              <h3 className="font-voice font-semibold text-lg mb-1 group-hover:text-accent-600 transition-colors">
+              <h3 className="font-voice font-semibold text-base sm:text-lg mb-1 group-hover:text-accent-600 transition-colors">
                 {c.name}
               </h3>
               <p className="text-sm text-ink-400 mb-4">

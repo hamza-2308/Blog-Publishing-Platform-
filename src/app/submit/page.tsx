@@ -13,12 +13,12 @@ export default async function SubmitBlogPage() {
   });
 
   return (
-    <div className="py-12">
+    <div className="py-8 sm:py-12 px-4 sm:px-0">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-accent-50 to-accent-100 text-accent-600 mb-4 shadow-sm">
-            <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-accent-50 to-accent-100 text-accent-600 mb-4 shadow-sm">
+            <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -27,15 +27,15 @@ export default async function SubmitBlogPage() {
               />
             </svg>
           </div>
-          <h1 className="font-voice text-3xl font-semibold mb-2">Submit a blog</h1>
-          <p className="text-ink-400">
+          <h1 className="font-voice text-2xl sm:text-3xl font-semibold mb-2">Submit a blog</h1>
+          <p className="text-ink-400 text-sm sm:text-base">
             Your submission enters pending review. An editor will approve or reject it before it
             publishes.
           </p>
         </div>
 
         {/* Form card */}
-        <div className="bg-white border border-ink-100 rounded-2xl p-8 shadow-card">
+        <div className="bg-white border border-ink-100 rounded-2xl p-5 sm:p-8 shadow-card">
           <SubmitForm categories={categories} />
         </div>
       </div>

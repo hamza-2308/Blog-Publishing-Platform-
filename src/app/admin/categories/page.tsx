@@ -27,50 +27,50 @@ export default async function AdminCategoriesPage() {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="font-voice text-2xl font-semibold mb-1">Manage categories</h1>
+      <div className="mb-6 sm:mb-8">
+        <h1 className="font-voice text-xl sm:text-2xl font-semibold mb-1">Manage categories</h1>
         <p className="text-sm text-ink-400">
           {categories.length} categories on the shelf
         </p>
       </div>
 
       {/* Create form */}
-      <form action={createCategory} className="flex gap-2 mb-6">
+      <form action={createCategory} className="flex flex-col sm:flex-row gap-2 mb-6">
         <input
           name="name"
           placeholder="New category name"
           required
           className="flex-1 border border-ink-100 rounded-lg px-3.5 py-2.5 text-sm bg-white input-focus shadow-soft"
         />
-        <button className="bg-gradient-to-r from-ink-900 to-ink-700 text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:from-accent-600 hover:to-accent-700 transition-all duration-300 shadow-md shadow-ink-900/10 hover:shadow-accent-600/20 hover:-translate-y-0.5">
+        <button className="bg-gradient-to-r from-ink-900 to-ink-700 text-white rounded-lg px-5 py-2.5 text-sm font-medium hover:from-accent-600 hover:to-accent-700 transition-all duration-300 shadow-md shadow-ink-900/10 hover:shadow-accent-600/20 hover:-translate-y-0.5 sm:w-auto w-full">
           Add category
         </button>
       </form>
 
       {/* Category list */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {categories.map((c) => {
           const colors = CATEGORY_COLOR_MAP[c.colorTag ?? "blue"];
           return (
             <div
               key={c.id}
-              className="bg-white border border-ink-100 rounded-xl p-5 flex items-center justify-between shadow-soft hover:shadow-card transition-shadow"
+              className="bg-white border border-ink-100 rounded-xl p-4 sm:p-5 flex items-center justify-between shadow-soft hover:shadow-card transition-shadow gap-3"
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 min-w-0">
                 <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center font-semibold"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center font-semibold shrink-0"
                   style={{ background: colors.bg, color: colors.text }}
                 >
                   {c.name.charAt(0)}
                 </div>
-                <div>
-                  <p className="font-medium">{c.name}</p>
+                <div className="min-w-0">
+                  <p className="font-medium truncate">{c.name}</p>
                   <p className="text-xs text-ink-400">
                     {c._count.blogs} {c._count.blogs === 1 ? "blog" : "blogs"}
                   </p>
                 </div>
               </div>
-              <form action={deleteCategory}>
+              <form action={deleteCategory} className="shrink-0">
                 <input type="hidden" name="id" value={c.id} />
                 <button className="text-xs border border-red-200 text-red-600 rounded-lg px-3 py-1.5 font-medium hover:bg-red-50 transition-colors">
                   Delete
@@ -80,7 +80,7 @@ export default async function AdminCategoriesPage() {
           );
         })}
         {categories.length === 0 && (
-          <p className="text-sm text-ink-400 col-span-2 text-center py-10">
+          <p className="text-sm text-ink-400 col-span-1 sm:col-span-2 text-center py-10">
             No categories yet. Add your first one above.
           </p>
         )}

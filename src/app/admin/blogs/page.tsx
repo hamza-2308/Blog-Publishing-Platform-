@@ -47,8 +47,8 @@ export default async function AdminBlogsPage() {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="font-voice text-2xl font-semibold mb-1">Manage blogs</h1>
+      <div className="mb-6 sm:mb-8">
+        <h1 className="font-voice text-xl sm:text-2xl font-semibold mb-1">Manage blogs</h1>
         <p className="text-sm text-ink-400">
           {pendingCount} {pendingCount === 1 ? "blog" : "blogs"} awaiting review
         </p>
@@ -57,10 +57,10 @@ export default async function AdminBlogsPage() {
       <div className="bg-white border border-ink-100 rounded-xl overflow-hidden shadow-soft">
         <div className="divide-y divide-ink-50">
           {blogs.map((b) => (
-            <div key={b.id} className="px-5 py-4 table-row-hover">
-              <div className="flex items-start justify-between gap-4">
+            <div key={b.id} className="px-4 sm:px-5 py-4 table-row-hover">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1.5">
+                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
                     <span className={STATUS_STYLES[b.status] ?? "status-badge"}>
                       {b.status.replace("_", " ").toLowerCase()}
                     </span>
@@ -78,7 +78,7 @@ export default async function AdminBlogsPage() {
                     })}
                   </p>
                 </div>
-                <div className="flex gap-2 shrink-0">
+                <div className="flex gap-2 shrink-0 flex-wrap">
                   {b.status === "PENDING_REVIEW" && (
                     <>
                       <form action={approveBlog}>
